@@ -1,29 +1,18 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <header>
+    <TodoListNewItem />
+  </header>
+  <main>main</main>
+  <footer>footer</footer>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent } from 'vue'
+import TodoListNewItem from './components/TodoListNewItem.vue'
 
-export default Vue.extend({
-  name: "App",
+export default defineComponent({
   components: {
-    HelloWorld
+    TodoListNewItem
   }
-});
+})
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

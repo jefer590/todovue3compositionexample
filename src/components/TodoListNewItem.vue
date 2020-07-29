@@ -1,6 +1,7 @@
 <template>
   <div class="flex mt-4">
     <input
+      v-model="newTaskText"
       type="text"
       class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-700 outline-none"
       placeholder="Add new todo"
@@ -14,7 +15,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default defineComponent({});
+export default defineComponent({
+  setup() {
+    const newTaskText = ref("");
+
+    return {
+      newTaskText
+    };
+  }
+});
 </script>

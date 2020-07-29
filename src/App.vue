@@ -5,13 +5,14 @@
         <h1 class="text-3xl text-gray-700 font-bold">Todo List</h1>
         <TodoListNewItem />
       </div>
-      <TodoList />
+      <TodoList :items="todoList" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import type { TodoListItem } from "./types/TodoListTypes";
+import { defineComponent, ref } from "vue";
 import TodoListNewItem from "./components/TodoListNewItem.vue";
 import TodoList from "./components/TodoList.vue";
 
@@ -19,6 +20,13 @@ export default defineComponent({
   components: {
     TodoList,
     TodoListNewItem
+  },
+  setup() {
+    const todoList = ref([] as TodoListItem[]);
+
+    return {
+      todoList
+    }
   }
 });
 </script>

@@ -5,13 +5,18 @@
         <h1 class="text-3xl text-gray-700 font-bold">Todo List</h1>
         <TodoListNewItem @create-task="createTask" />
       </div>
-      <TodoList :items="data.todoList" />
+      <TodoList
+        :items="data.todoList"
+        @done-task="doneTask"
+        @delete-task="deleteTask"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import type { TodoListItem } from "./types/TodoListTypes";
+import { v4 as uuidv4 } from "uuid";
 import { defineComponent, reactive } from "vue";
 import TodoListNewItem from "./components/TodoListNewItem.vue";
 import TodoList from "./components/TodoList.vue";
@@ -28,14 +33,27 @@ export default defineComponent({
 
     const createTask = (newTask: string): void => {
       data.todoList.push({
+        id: uuidv4(),
         task: newTask,
         done: false,
       });
     };
 
+    const doneTask = (id: string) => {
+      const itemIndex = data.todoList.findIndex(i => i.id === id);
+      data.todoList[itemIndex].done = true;
+    };
+
+    const deleteTask = (id: string) => {
+      const itemIndex = data.todoList.findIndex(i => i.id === id);
+      data.todoList.splice(itemIndex, 1);
+    };
+
     return {
       data,
-      createTask
+      createTask,
+      doneTask,
+      deleteTask
     }
   }
 });
